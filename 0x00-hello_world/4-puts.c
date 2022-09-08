@@ -2,11 +2,9 @@
 
 /**
  *
- * main - Entry point
+ * main - Printing 
  *
- *
- *
- * Return: always 0
+ * Return: always 0 
  *
  */
 
