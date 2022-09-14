@@ -1,7 +1,7 @@
-#include <stdio.h>
+#include <main.h>
 
 /**
- * main - check the description
+ * main - Entry point
  *
  * Description:  prints the alphabet, in lowercase, followed by a new line
  * Return: 0 if succeaaful
