@@ -1,1 +1,1 @@
-Write a function that checks for a digit (0 through 9).
+ Numbers constitute the only universal language
