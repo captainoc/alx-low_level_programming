@@ -5,28 +5,23 @@
  * @dest: an input string
  * @src: an input string
  * @n: an input integer
- * Return: A pointer to the resulting string
+ * Return: A pointer to the destination string dest
  */
 char *_strncpy(char *dest, char *src, int n)
 {
-	int srclen = 0, i = 0;
-	char *temp = dest, *start = src;
+	char *dest_end = dest;
+	int src_len = 0;
 
-	while (*src)
+	while (src_len < n && src[src_len])
+		++src_len;
+
+	if (src + src_len < dest || dest + n < src)
 	{
-		srclen++;
-		src++;
+		for (; src_len; --src_len, --n)
+			*dest_end++ = *src++;
+
+		for (; n; --n)
+			*dest_end++ = '\0';
 	}
-
-	srclen++;
-
-	if (n > srclen)
-		n = srclen;
-
-	src = start;
-
-	for (; i < n; i++)
-		*dest++ = *src++;
-
-	return (temp);
+	return (dest);
 }
