@@ -1,22 +1,78 @@
 #include "main.h"
-#include <stdio.h>
+#include <limits.h>
 
 /**
- * main - check the code for Holberton School students.
+ * print_number - print an integer
+ * @n: the integer to print
  *
- * Return: Always 0.
+ * Return: void
  */
-int main(void)
+void print_number(int n)
 {
-	char s1[98] = "Hello ";
-	char s2[] = "World!\n";
-	char *p;
+	if (n > -1)
+	{
+		if (n > 9)
+			print_number(n / 10);
+		_putchar('0' + n % 10);
+	}
+	else
+	{
+		_putchar('-');
+		if (n < -9)
+			print_number(n / -10);
+		_putchar('0' - n % 10);
+	}
+}
 
-	printf("%s\n", s1);
-	printf("%s", s2);
-	p = _strcat(s1, s2);
-	printf("%s", s1);
-	printf("%s", s2);
-	printf("%s", p);
+/**
+ * _puts - print a string, followed by a new line
+ * @str: the string to print
+ *
+ * Return: void
+ */
+void _puts(char *str)
+{
+	while (*str)
+		_putchar(*str++);
+	_putchar('\n');
+}
+
+/**
+ * isdigits - check if a string is a number
+ * @s: a pointer to the string to check
+ *
+ * Return: 1 if the string is a number,
+ * otherwise 0
+ */
+int isdigits(char *s)
+{
+	while ('0' <= *s && *s <= '9')
+		++s;
+	return (!*s);
+}
+
+/**
+ * main - print the sum of positive integers
+ * @argc: size of the argument vector
+ * @argv: program name and arguments
+ *
+ * Return: 1 if called with arguments containing non-digit symbols,
+ * otherwise 0
+ */
+int main(int argc, char *argv[])
+{
+	int sum;
+
+	for (sum = 0; --argc; sum += atoi(*argv))
+	{
+		if (!isdigits(*(++argv)))
+		{
+			_puts("Error");
+			return (1);
+		}
+	}
+
+	printf("%d\n", sum);
+
 	return (0);
 }
