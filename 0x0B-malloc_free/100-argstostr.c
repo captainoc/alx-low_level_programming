@@ -1,39 +1,45 @@
 #include "main.h"
+#include <stdlib.h>
 
 /**
- * argstostr - concatenate all arguments into a new string
- * @ac: the argument count
- * @av: the argument vector
+ * argstostr - A function that concatenates all arguments of your program
+ * @ac: number of arguments
+ * @av: array containing arguments
  *
- * Return: NULL memory allocation fails, ac is 0 or av is NULL,
- * otherwise return a pointer to the new string
+ * Return: A pointer to string that containing all arguments
+ * or NULL if ac == 0, if av == NULL, or upon failure
  */
 char *argstostr(int ac, char **av)
 {
-	char *cat, *chr;
-	int arg, size;
+	char *new_str;
+	int len = 0, i = 0, j, k = 0;
 
-	if (!ac || !av)
+	if (ac <= 0 || av == NULL)
 		return (NULL);
 
-	for (arg = 0, size = 1; arg < ac; ++arg, ++size)
+	for (; i < ac; i++)
 	{
-		for (chr = av[arg]; *chr; ++chr, ++size)
-			;
+		for (j = 0; av[i][j]; j++)
+			len++;
+		len++;
 	}
 
-	cat = (char *) malloc(sizeof(char) * size);
-
-	if (!cat)
+	len++;
+	new_str = malloc(len * sizeof(char));
+	if (new_str == NULL)
 		return (NULL);
 
-	for (arg = 0, size = 0; arg < ac; ++arg, ++size)
+	for (i = 0; i < ac; i++)
 	{
-		cat[size] = *chr;
-		cat[size] = '\n';
+		for (j = 0; av[i][j]; j++)
+		{
+			new_str[k] = av[i][j];
+			k++;
+		}
+		new_str[k] = '\n';
+		k++;
 	}
 
-	cat[size] = '\0';
-
-	return (cat);
+	new_str[k] = '\0';
+	return (new_str);
 }
