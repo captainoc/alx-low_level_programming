@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdlib.h>
 
 /**
  * malloc_checked - allocate dynamic memory using malloc
@@ -11,9 +12,12 @@
  */
 void *malloc_checked(unsigned int b)
 {
-	void *p = malloc(b);
+	void *s;
 
-	if (p)
-		return (p);
-	exit(98);
+	s = malloc(b);
+
+	if (s == NULL)
+		exit(98);
+
+	return (s);
 }
